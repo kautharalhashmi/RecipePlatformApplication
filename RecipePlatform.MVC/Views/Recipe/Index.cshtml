@@ -1,0 +1,116 @@
+﻿@using RecipePlatform.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model RecipePlatform.Models.ViewModel.RecipeIndexViewModel
+
+@{
+    ViewData["Title"] = Model.IsEditing ? "Edit Recipe" : "Add New Recipe";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Save" method="post" class="mb-4">
+    @Html.AntiForgeryToken()
+
+    @if (Model.NewRecipe.Id != null)
+    {
+        <input type="hidden" asp-for="NewRecipe.Id" />
+    }
+    
+    <div class="mb-3">
+        <label asp-for="NewRecipe.Title" class="form-label"></label>
+        <input asp-for="NewRecipe.Title" class="form-control" />
+        <span asp-validation-for="NewRecipe.Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRecipe.Description" class="form-label"></label>
+        <textarea asp-for="NewRecipe.Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="NewRecipe.Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRecipe.Ingredients" class="form-label"></label>
+        <textarea asp-for="NewRecipe.Ingredients" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="NewRecipe.Ingredients" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRecipe.Instructions" class="form-label"></label>
+        <textarea asp-for="NewRecipe.Instructions" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="NewRecipe.Instructions" class="text-danger"></span>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label asp-for="NewRecipe.PrepTimeMinutes" class="form-label"></label>
+            <input type="number" asp-for="NewRecipe.PrepTimeMinutes" class="form-control" min="0" />
+            <span asp-validation-for="NewRecipe.PrepTimeMinutes" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="NewRecipe.CookTimeMinutes" class="form-label"></label>
+            <input type="number" asp-for="NewRecipe.CookTimeMinutes" class="form-control" min="0" />
+            <span asp-validation-for="NewRecipe.CookTimeMinutes" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="NewRecipe.Servings" class="form-label"></label>
+            <input type="number" asp-for="NewRecipe.Servings" class="form-control" min="1" />
+            <span asp-validation-for="NewRecipe.Servings" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRecipe.Difficulty" class="form-label"></label>
+        <select asp-for="NewRecipe.Difficulty" class="form-select" asp-items="Html.GetEnumSelectList<DifficultyLevel>()"></select>
+        <span asp-validation-for="NewRecipe.Difficulty" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRecipe.CategoryId" class="form-label"></label>
+        <select asp-for="NewRecipe.CategoryId" class="form-select" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"></select>
+        <span asp-validation-for="NewRecipe.CategoryId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@(Model.IsEditing ? "Update" : "Add")</button>
+</form>
+
+<hr />
+
+<h2>All Recipes</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Prep Time</th>
+            <th>Cook Time</th>
+            <th>Servings</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model.Recipes)
+        {
+            <tr>
+                <td>@recipe.Title</td>
+                <td>@recipe.Category?.Name ?? "Uncategorized"</td>
+                <td>@recipe.Difficulty</td>
+                <td>@recipe.PrepTimeMinutes min</td>
+                <td>@recipe.CookTimeMinutes min</td>
+                <td>@recipe.Servings</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-sm btn-secondary me-1">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@recipe.Id" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

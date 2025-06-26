@@ -1,0 +1,195 @@
+﻿@model IEnumerable<RecipePlatform.Models.Recipe>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Custom Navbar -->
+<header class="navbar" id="navbar">
+    <div class="navbar-left">
+        <img src="../Imgs/logo.png" alt="Logo" class="logo" />
+    </div>
+    <div class="navbar-center">
+        <nav class="nav-links">
+            <a asp-area="" asp-controller="Recipe" asp-action="AllHome" class="nav-link active">Home</a>
+            <a href="#" class="nav-link">About Us</a>
+            <a asp-area="" asp-controller="Recipe" asp-action="All" class="nav-link ">Recipes</a>
+        </nav>
+    </div>
+    <div class="navbar-right">
+        <button class="signup-btn ">
+            <a asp-area="" asp-controller="Account" asp-action="Register" style="text-decoration:none;color:black">
+                Sign Up
+            </a>
+        </button>
+        <button class="login-btn">
+            <a asp-area="" asp-controller="Account" asp-action="Login" style="text-decoration:none; color:aliceblue">
+                Login
+            </a>
+        </button>
+    </div>
+</header>
+
+
+
+<!-- Home Section -->
+<div class="home-page-section">
+    <div class="hero-container-home">
+        <div class="hero-left">
+            <h1>
+                Discover Your <br />
+                Inner Chef with <br />
+                TasteBud
+            </h1>
+            <p>
+                Endless Recipes. Bold Flavors. Simple Steps. Unleash the joy of
+                cooking with easy, delicious recipes tailored to your taste. From
+                weeknight dinners to gourmet delights—start your culinary journey
+                today.
+            </p>
+            <button class="Explore-btn">Explore Recipes</button>
+        </div>
+        <div class="hero-right">
+            <img src="./Imgs/1.png"
+                 alt="Hero Image"
+                 style="width: 100%; height: auto; border-radius: 10px" />
+        </div>
+    </div>
+</div>
+<!-- END -->
+<!-- Steps Section -->
+<div class="steps-section">
+    <div class="steps-title"><h3>How It Works</h3></div>
+
+    <div class="steps-container">
+        <div class="steps-card">
+            <div class="steps-img">
+                <img src="./Imgs/step1.png" alt="" />
+            </div>
+            <div class="steps-header">Explore Recipes</div>
+            <div class="steps-subheader">
+                Browse a wide range of handpicked recipes for every taste, diet, and
+                occasion.
+            </div>
+        </div>
+        <div class="steps-card">
+            <div class="steps-img">
+                <img src="./Imgs/step2.png" alt="" />
+            </div>
+            <div class="steps-header">Follow Simple Steps</div>
+            <div class="steps-subheader">
+                Each recipe includes easy-to-follow instructions, photos, and
+                cooking tips.
+            </div>
+        </div>
+        <div class="steps-card">
+            <div class="steps-img">
+                <img src="./Imgs/step3.png" alt="" />
+            </div>
+            <div class="steps-header">Cook & Enjoy</div>
+            <div class="steps-subheader">
+                Bring your dish to life and enjoy homemade meals like never before.
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END -->
+<!-- Recipe Section -->
+<div class="recipe-section">
+    <div class="recipe-title">
+        <h3>Latest Recipes</h3>
+    </div>
+    <div class="recipe-container">
+
+        <div class="recipe-container">
+
+
+
+            @foreach (var recipe in Model)
+            {
+                <div class="recipe-card">
+                    <img src="../Imgs/food.png" alt="Recipe 1" />
+                    <h4>@recipe.Title </h4>
+                    <div class="star-rate">
+                        <i class="ri-star-fill" style="color: #000000"></i>
+                        <i class="ri-star-fill" style="color: #000000"></i>
+                        <i class="ri-star-fill" style="color: #000000"></i>
+                        <i class="ri-star-fill" style="color: #000000"></i>
+                        <i class="ri-star-half-fill" style="color: #000000"></i>
+                    </div>
+                    <p>
+                        @recipe.Description
+                    </p>
+                    <div class="recipe-btn">
+                        <a href="@Url.Action("Details", "Recipe", new { id = recipe.Id })" class="Explore-btn">View Recipe</a>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+
+    </div>
+</div>
+<!-- END -->
+<!-- About Section -->
+<div class="about-section">
+    <div class="about-title">
+        <h3>About Us</h3>
+    </div>
+    <div class="about-container">
+        <div class="about-image">
+            <img src="./Imgs/2.png"
+                 alt="About Us"
+                 style="width: 100%; height: auto; border-radius: 10px" />
+        </div>
+        <div class="about-content">
+            <p>
+                At TasteBud, we make cooking easy, joyful, and full of flavor.
+                Whether you're a kitchen pro or just starting out, our simple, tasty
+                recipes are here to guide you. We focus on:
+            </p>
+            <br />
+            <p>
+                Clear steps with everyday ingredients <br />
+                Delicious results tested by real cooks <br />
+                All lifestyles — from quick meals to special dishes
+            </p>
+            <br />
+            <p>
+                TasteBud is your friendly kitchen companion. Let’s cook something
+                amazing together!
+            </p>
+        </div>
+    </div>
+</div>
+<!-- END -->
+<!-- Recipe Section -->
+<div class="recipe-section">
+    <div class="recipe-title">
+        <h3>Top Related Recipes</h3>
+    </div>
+    <div class="recipe-container">
+        @foreach (var recipe in Model)
+        {
+            <div class="recipe-card">
+                <img src="../Imgs/food.png" alt="Recipe 1" />
+                <h4>@recipe.Title </h4>
+                <div class="star-rate">
+                    <i class="ri-star-fill" style="color: #000000"></i>
+                    <i class="ri-star-fill" style="color: #000000"></i>
+                    <i class="ri-star-fill" style="color: #000000"></i>
+                    <i class="ri-star-fill" style="color: #000000"></i>
+                    <i class="ri-star-half-fill" style="color: #000000"></i>
+                </div>
+                <p>
+                    @recipe.Description
+                </p>
+                <div class="recipe-btn">
+                    <a href="@Url.Action("Details", "Recipe", new { id = recipe.Id })" class="Explore-btn">View Recipe</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- END -->

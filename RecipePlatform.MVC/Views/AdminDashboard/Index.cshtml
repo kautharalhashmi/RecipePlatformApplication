@@ -1,0 +1,116 @@
+﻿@model RecipePlatform.MVC.viewmodel.AdminDashboardViewModel
+@using RecipePlatform.Models
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+<section class="welcome-banner">
+    <h2>Hello,  </h2>
+    <p>Ready to whip up something delicious today? Let’s get cooking!</p>
+    <br />
+    <hr />
+    <div class="banner-img">
+        <img src="../Imgs/3.png" alt="Kitchen Illustration" />
+    </div>
+</section>
+
+<section class="section-nav">
+    <div class="section-card active" id="viewUsersCard">
+        <img src="../imgs/4.png" alt="user icon" />
+        <h2>View Users</h2>
+        <p>Ready Ready Ready Ready Ready Ready</p>
+    </div>
+    <div class="section-card" id="viewRecipesCard">
+        <img src="../imgs/5.png" alt="recipe icon" />
+        <h2>View Recipes</h2>
+        <p>Ready Ready Ready Ready Ready Ready</p>
+    </div>
+</section>
+
+<section class="content-section active" id="userSection">
+    <!-- User Cards -->
+
+      @foreach (var user in Model.Users)
+        {
+    <div class="card">
+            <form asp-action="DeleteUser" method="post" asp-route-id="@user.Id" onsubmit="return confirm('Delete user?');">
+                <button type="submit" class="delete-btn ">✖</button>
+            </form>
+   
+        <h3>Username : @user.UserName</h3>
+			<p>Email : @user.Email</p>
+            <p>Country : @user.Country</p>
+            <p>Gender : @user.Gender</p>
+    </div>
+        }
+</section>
+
+<section class="content-section" id="recipeSection">
+    <!-- Recipe Cards -->
+
+    @foreach (var recipe in Model.Recipes)
+    {
+    @*     <div class="card"> *@
+    @*         <button class="delete-btn">✖</button> *@
+    @*     <img src="https://via.placeholder.com/100" alt="food" /> *@
+    @*     <h4>@recipe.Title</h4> *@
+    @*     <p>category: @recipe.Category.Name</p> *@
+    @*     <p>★★★★★</p> *@
+    @*     <button>Edit</button> *@
+    @* </div> *@
+        <div class="recipe-card">
+            <form asp-action="DeleteRecipe" method="post" asp-route-id="@recipe.Id" onsubmit="return confirm('Delete recipe?');">
+
+             
+                <button class="delete-btn" type="submit">
+                    <i class="ri-close-fill "></i>
+
+                </button>
+            </form>
+            <img src="../Imgs/food.png" alt="Recipe 1" />
+            <h4>@recipe.Title </h4>
+            <div class="star-rate">
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-half-fill" style="color: #000000"></i>
+            </div>
+            <p>
+                @recipe.Description
+            </p>
+            <div class="recipe-btn">
+                <button class="Explore-btn">View Recipe</button>
+            </div>
+        </div>
+    }
+   
+</section>
+
+
+
+<script>
+    const viewUsersCard = document.getElementById("viewUsersCard");
+    const viewRecipesCard = document.getElementById("viewRecipesCard");
+    const userSection = document.getElementById("userSection");
+    const recipeSection = document.getElementById("recipeSection");
+
+    viewUsersCard.addEventListener("click", () => {
+      viewUsersCard.classList.add("active");
+      viewRecipesCard.classList.remove("active");
+      userSection.classList.add("active");
+      recipeSection.classList.remove("active");
+    });
+
+    viewRecipesCard.addEventListener("click", () => {
+      viewRecipesCard.classList.add("active");
+      viewUsersCard.classList.remove("active");
+      recipeSection.classList.add("active");
+      userSection.classList.remove("active");
+    });
+</script>

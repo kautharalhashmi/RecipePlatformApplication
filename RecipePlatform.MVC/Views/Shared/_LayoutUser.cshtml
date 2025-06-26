@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RecipePlatform.MVC</title>
+
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="~/fonts/remixicons.css" />
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="navbar-left">
+            <img src="/Imgs/logo.png" alt="Logo" class="logo" />
+        </div>
+        <div class="navbar-center">
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Recipes</a>
+                <a href="#" class="active"> My Dashboard</a>
+            </nav>
+        </div>
+        <div class="navbar-right">
+         <i class="ri-user-line icon"></i> 
+           
+        </div>
+    </header>
+ 
+            @RenderBody()
+
+
+    <footer>© 2025 Copyright by kauthar alhashmi ❤️</footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Now load validation scripts partial -->
+    <partial name="_ValidationScriptsPartial" />
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

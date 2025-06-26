@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RecipePlatform.MVC</title>
+
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="~/fonts/remixicons.css" />
+
+    <style>
+   
+     
+
+          
+       
+
+        .section-nav {
+            display: flex;
+
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+        }
+
+        .section-card {
+            background: #f8f6f6;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+            .section-card:hover,
+            .section-card.active {
+                border-color: black;
+            }
+
+            .section-card img {
+                width: 100px;
+                height: auto;
+            }
+
+        .content-section {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 40px;
+        }
+
+            .content-section.active {
+                display: flex;
+            }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            width: 200px;
+            padding: 15px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .card img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+            }
+
+        .delete-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: rgb(188, 21, 21);
+        }
+
+        footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+  
+    <header class="navbar" id="navbar">
+        <div class="navbar-left">
+            <img src="../Imgs/logo.png" alt="Logo" class="logo" />
+        </div>
+        <div class="navbar-center">
+            <nav class="nav-links">
+                <a asp-area="" asp-controller="Recipe" asp-action="AllHome" class="nav-link">Home</a>
+                <a href="#" class="nav-link">About Us</a>
+                <a asp-area="" asp-controller="Recipe" asp-action="All" class="nav-link ">Recipes</a>
+                <a asp-area="" asp-controller="UserDashboard" asp-action="Index" class="nav-link active">My Dashboard</a>
+            </nav>
+        </div>
+        <div class="navbar-right">
+            <i class="ri-user-line icon">Logout</i>
+        </div>
+    </header>
+    @RenderBody()
+
+
+    <footer>© 2025 Copyright by kauthar alhashmi ❤️</footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Now load validation scripts partial -->
+    <partial name="_ValidationScriptsPartial" />
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

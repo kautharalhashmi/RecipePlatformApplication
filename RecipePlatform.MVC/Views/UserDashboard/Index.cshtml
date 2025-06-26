@@ -1,0 +1,234 @@
+﻿@model IEnumerable<RecipePlatform.Models.Recipe>
+@using RecipePlatform.Models
+@{
+    ViewData["Title"] = "My Recipes";
+    var categories = ViewBag.Categories as IEnumerable<Category>;
+
+    
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    
+
+}
+
+@* <h2>My Recipes</h2> *@
+
+@* <table class="table table-bordered"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th>Title</th> *@
+@*             <th>Prep</th> *@
+@*             <th>Cook</th> *@
+@*             <th>Servings</th> *@
+@*             <th>Category</th> *@
+@*             <th>Difficulty</th> *@
+@*             <th>Actions</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody id="recipeTable"> *@
+@*         @foreach (var recipe in Model) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@recipe.Title</td> *@
+@*                 <td>@recipe.PrepTimeMinutes</td> *@
+@*                 <td>@recipe.CookTimeMinutes</td> *@
+@*                 <td>@recipe.Servings</td> *@
+@*                 <td>@recipe.Category?.Name</td> *@
+@*                 <td>@recipe.Difficulty</td> *@
+@*                 <td> *@
+@*                     <button class="btn btn-sm btn-warning" onclick="editRecipe(@recipe.Id)">Edit</button> *@
+@*                     <form method="post" asp-action="Delete" asp-route-id="@recipe.Id" style="display:inline;"> *@
+@*                         <button class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</button> *@
+@*                     </form> *@
+@*                 </td> *@
+@*             </tr> *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@
+
+@* <hr /> *@
+@* <h4 id="formTitle">Add Recipe</h4> *@
+
+@* <form asp-action="Save" method="post" id="recipeForm"> *@
+@*     <input type="hidden" name="Id" id="recipeId" /> *@
+@*     <div class="form-group"> *@
+@*         <label>Title</label> *@
+@*         <input type="text" name="Title" class="form-control" required /> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Description</label> *@
+@*         <textarea name="Description" class="form-control"></textarea> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Ingredients</label> *@
+@*         <textarea name="Ingredients" class="form-control" required></textarea> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Instructions</label> *@
+@*         <textarea name="Instructions" class="form-control" required></textarea> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Prep Time (min)</label> *@
+@*         <input type="number" name="PrepTimeMinutes" class="form-control" required /> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Cook Time (min)</label> *@
+@*         <input type="number" name="CookTimeMinutes" class="form-control" required /> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Servings</label> *@
+@*         <input type="number" name="Servings" class="form-control" required /> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Difficulty</label> *@
+@*         <select name="Difficulty" class="form-control"> *@
+@*             <option>Easy</option> *@
+@*             <option>Medium</option> *@
+@*             <option>Hard</option> *@
+@*         </select> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Category</label> *@
+@*         <select name="CategoryId" class="form-control"> *@
+@*             @foreach (var c in categories) *@
+@*             { *@
+@*                 <option value="@c.Id">@c.Name</option> *@
+@*             } *@
+@*         </select> *@
+@*     </div> *@
+@*     <button type="submit" class="btn btn-success">Save</button> *@
+@* </form> *@
+
+
+
+
+<section class="welcome-banner">
+    <h2>Hello,  </h2>
+    <p>Ready to whip up something delicious today? Let’s get cooking!</p>
+    <br />
+    <hr />
+    <div class="banner-img">
+        <img src="./Imgs/3.png" alt="Kitchen Illustration" />
+    </div>
+</section>
+<h3 id="formTitle"></h3>
+<div class="form-section">
+    <form asp-action="Save" method="post" id="recipeForm"  div class="form-content">
+        <div class="form-grid">
+            <input type="hidden" name="Id" id="recipeId" />
+
+
+
+            <input type="text" name="Title" class="form-control" required placeholder ="Title"/>
+
+
+            <input name="Description" class="form-control" placeholder="Description"></input>
+
+
+            <input name="Ingredients" class="form-control" required placeholder="Ingredients"></input>
+
+
+
+            <input name="Instructions" class="form-control" required placeholder="Instraction"></input>
+
+
+            <input type="number" name="PrepTimeMinutes" class="form-control" required placeholder ="Preporation Minuites"/>
+
+
+            <input type="number" name="CookTimeMinutes" class="form-control" required placeholder="CookingTime"/>
+            <div class="form-group">
+
+                <input type="number" name="Servings" class="form-control" required placeholder="Serving" />
+            </div>
+            <div class="form-group">
+
+                <select name="Difficulty" class="form-control">
+
+                    <option selected>Easy</option>
+                    <option>Medium</option>
+                    <option>Hard</option>
+                </select>
+            </div>
+			<select name="CategoryId" class="form-control">
+				@foreach (var c in categories)
+				{
+					<option value="@c.Id">@c.Name</option>
+				}
+			</select>
+        </div>
+           
+              
+            
+        <button type="submit" class="create-btn">Create Recipe</button>
+    </form>
+</div>
+
+<!-- Recipe Section -->
+<div class="recipe-section">
+    <div class="recipe-title">
+        <h3>My Recipes</h3>
+    </div>
+    <div class="recipe-container">
+
+        @foreach (var recipe in Model){
+        <div class="recipe-card">
+             <form method="post" asp-action="Delete" asp-route-id="@recipe.Id">
+                    <button class="delete-btn" onclick="return confirm('Delete?')">
+                <i class="ri-close-fill "></i> 
+                        
+                    </button>
+				</form>
+            <img src="./Imgs/food.png" alt="Recipe 1" />
+            <h4>@recipe.Title </h4>
+            <div class="star-rate">
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-fill" style="color: #000000"></i>
+                <i class="ri-star-half-fill" style="color: #000000"></i>
+            </div>
+            <p>
+					@recipe.Description
+            </p>
+            <div class="edit-btn" style="margin-top: 20px">
+                    <button class="edit-btn" onclick="editRecipe(@recipe.Id)">Edit Recipe</button>
+            </div>
+        </div>
+      
+        
+        }
+
+
+    </div>
+</div>
+<!-- END -->
+@section Scripts {
+    <script>
+             function editRecipe(id) {
+            fetch(`/UserDashboard/EditForm/${id}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Network response was not ok");
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data); // DEBUG: check what data looks like
+                    document.getElementById("formTitle").innerText = "Edit Recipe";
+                    document.getElementById("recipeId").value = data.id;
+                    document.querySelector("[name='Title']").value = data.title;
+                    document.querySelector("[name='Description']").value = data.description;
+                    document.querySelector("[name='Ingredients']").value = data.ingredients;
+                    document.querySelector("[name='Instructions']").value = data.instructions;
+                    document.querySelector("[name='PrepTimeMinutes']").value = data.prepTimeMinutes;
+                    document.querySelector("[name='CookTimeMinutes']").value = data.cookTimeMinutes;
+                    document.querySelector("[name='Servings']").value = data.servings;
+                    document.querySelector("[name='Difficulty']").value = data.difficulty;
+                    document.querySelector("[name='CategoryId']").value = data.categoryId;
+                    window.scrollTo({ top: document.getElementById("recipeForm").offsetTop, behavior: 'smooth' });
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    alert("Failed to load recipe data. Please try again.");
+                });
+        }
+
+    </script>
+}

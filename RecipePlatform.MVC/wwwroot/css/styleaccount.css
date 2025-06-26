@@ -1,0 +1,216 @@
+﻿@font-face {
+    font-family: "MyFont1";
+    src: url("/fonts/TAN-Headline/TANHEADLINE-Regular.ttf");
+    font-weight: lighter;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MyFont2";
+    src: url("/fonts/open-sauce/OpenSauceOne-Regular.ttf");
+    font-style: normal;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "MyFont3";
+    src: url("/fonts/raginy-rough-font/raginyrough-regular.ttf") ;
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "MyFont1", sans-serif;
+  background-color: #f8f7f4;
+
+  color: #111;
+}*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "MyFont1", sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f7f4;
+    color: #111;
+}
+
+
+
+.login-register-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin-bottom:10vh;
+}
+
+.left {
+    flex: 1;
+    background-color: #f8f8f8;
+}
+
+    .left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+.right {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    margin-bottom: 8px;
+    font-size: 32px;
+    color: #333;
+    font-family: "MyFont1";
+}
+
+.slogan {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 12px 0;
+    border: 1px solid #111;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+    button:hover {
+        background: #333;
+    }
+
+.toggle {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #f9a825;
+    font-family: "MyFont2";
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+    .toggle:hover {
+        color: #333;
+    }
+
+.forgot {
+    text-align: right;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+    .forgot a {
+        color: #f9a825;
+        text-decoration: none;
+        font-family: "MyFont2";
+    }
+a {
+    color: #333;
+    text-decoration: none;
+    font-family: "MyFont2";
+}
+        .forgot a:hover {
+            text-decoration: underline;
+            color: #333;
+        }
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left {
+        height: 200px;
+    }
+
+    .right {
+        padding: 30px 20px;
+    }
+}
+
+/* ---------------------------------------------------------*/
+
+/* ---Footer-----------------------------------*/
+footer {
+    background-color: #111;
+    padding: 45px 0;
+    text-align: center;
+    position: relative;
+    color: #fff;
+    width:100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+    .footer-content h3 {
+        font-size: 16px;
+        font-family: "MyFont2";
+    }

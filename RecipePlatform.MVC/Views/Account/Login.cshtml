@@ -1,0 +1,127 @@
+﻿@* @model RecipePlatform.Models.ViewModel.LoginViewModel *@
+@* @{ *@
+@*     Layout = "~/Views/Shared/_LayoutAccount.cshtml"; *@
+@* } *@
+@* <h2>Login</h2> *@
+
+@* <form asp-action="Login" method="post"> *@
+@*     <div asp-validation-summary="All"></div> *@
+
+@*     <div class="form-group"> *@
+@*         <label asp-for="Email"></label> *@
+@*         <input asp-for="Email" class="form-control" /> *@
+@*     </div> *@
+
+@*     <div class="form-group"> *@
+@*         <label asp-for="Password"></label> *@
+@*         <input asp-for="Password" class="form-control" /> *@
+@*     </div> *@
+
+@*     <div class="form-check"> *@
+@*         <input asp-for="RememberMe" class="form-check-input" /> *@
+@*         <label asp-for="RememberMe" class="form-check-label"></label> *@
+@*     </div> *@
+
+@*     <button type="submit" class="btn btn-primary">Login</button> *@
+@* </form> *@
+
+@* @section Scripts { *@
+@*     <partial name="_ValidationScriptsPartial" /> *@
+@* } *@
+
+
+
+
+
+
+
+
+@* <div class="login-register-page"> *@
+@*     <form asp-action="Login" method="post" class="container"> *@
+@*         <div class="left"> *@
+@*             <img src="./Assets/Imgs/5.png" alt="Chef Image" /> *@
+@*         </div> *@
+@*         <div class="right"> *@
+@*             <!-- Login Form --> *@
+@*             <div id="loginForm"> *@
+@*                 <h2>Welcome Back!</h2> *@
+@*                 <p class="slogan">Log in to continue exploring recipes.</p> *@
+@*                 <input type="text" placeholder="Username" required /> *@
+@*                 <input type="password" placeholder="Password" required /> *@
+@*                 <div class="forgot"><a href="#">Forgot password?</a></div> *@
+@*                 <button>Login</button> *@
+@*             </div> *@
+
+@*             <!-- Register Form --> *@
+@*             <div id="registerForm" class="hidden"> *@
+@*                 <h2>Welcome!</h2> *@
+@*                 <p class="slogan">Create an account to get started.</p> *@
+@*                 <input type="text" placeholder="Username" required /> *@
+@*                 <input type="email" placeholder="Email" required /> *@
+@*                 <input type="password" placeholder="Password" required /> *@
+@*                 <select required> *@
+@*                     <option value="">Select Role</option> *@
+@*                     <option value="student">Student</option> *@
+@*                     <option value="professional">Professional</option> *@
+@*                 </select> *@
+@*                 <button>Register</button> *@
+@*             </div> *@
+
+@*             <div class="toggle" onclick="toggleForm()"> *@
+@*                 Don't have an account? Register here *@
+@*             </div> *@
+        
+@*     </form> *@
+@* </div> *@
+@*     <script> *@
+@*         const loginForm = document.getElementById("loginForm"); *@
+@*         const registerForm = document.getElementById("registerForm"); *@
+@*         const toggleText = document.querySelector(".toggle"); *@
+
+@*         function toggleForm() { *@
+@*           const isLogin = !loginForm.classList.contains("hidden"); *@
+@*           loginForm.classList.toggle("hidden"); *@
+@*           registerForm.classList.toggle("hidden"); *@
+@*           toggleText.textContent = isLogin *@
+@*             ? "Already have an account? Login here" *@
+@*             : "Don't have an account? Register here"; *@
+@*         } *@
+@*     </script> *@
+@* </div> *@
+@model RecipePlatform.Models.ViewModel.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+
+   
+        <form asp-action="Login" method="post" class="container">
+            <div class="left">
+                <img src="~/imgs/5.png" alt="Chef Image" />
+            </div>
+            <div class="right">
+            <div id="loginForm">
+                <h2>Welcome Back!</h2>
+                <p class="slogan">Log in to continue exploring recipes.</p>
+                <input asp-for="Email" placeholder="Email" required />
+                <input asp-for="Password" placeholder="Password" type="password" required />
+                @* <div class="form-check forgot"> *@
+                    @* <input asp-for="RememberMe" class="form-check-input" /> *@
+                    @* <label asp-for="RememberMe" class="form-check-label"></label> *@
+                    <div class="forgot"><a href="#">Forgot password?</a></div>
+                  
+                @* </div> *@
+                <button type="submit">Login</button>
+                </div>
+                <div class="toggle">
+                    Don't have an account? <a href="/Account/Register">Register here</a>
+                </div>
+            </div>
+        </form>
+  
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

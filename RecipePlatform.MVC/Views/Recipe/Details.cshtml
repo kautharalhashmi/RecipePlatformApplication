@@ -1,0 +1,236 @@
+﻿@model RecipePlatform.Models.Recipe
+
+@{
+    ViewData["Title"] = "Recipe Details";
+    Layout = "_Layout";
+    var ratings = ViewBag.Ratings as List<RecipePlatform.Models.Rating>;
+}
+<header class="navbar" id="navbar">
+    <div class="navbar-left">
+        <img src="/Imgs/logo.png" alt="Logo" class="logo" />
+    </div>
+    <div class="navbar-center">
+        <nav class="nav-links">
+            <a asp-area="" asp-controller="Recipe" asp-action="AllHome" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About Us</a>
+            <a asp-area="" asp-controller="Recipe" asp-action="All" class="nav-link">Recipes</a>
+        </nav>
+    </div>
+    <div class="navbar-right">
+        <button class="signup-btn ">
+            <a asp-area="" asp-controller="Account" asp-action="Register" style="text-decoration:none;color:black">
+                Sign Up
+            </a>
+        </button>
+        <button class="login-btn">
+            <a asp-area="" asp-controller="Account" asp-action="Login" style="text-decoration:none; color:aliceblue">
+                Login
+            </a>
+        </button>
+    </div>
+</header>
+<div class="recipe-details-container">
+    <!-- Layout -->
+    <div class="recipe-details-main">
+        <!-- Image Left -->
+        <div class="recipe-details-image">
+            <img src="/Imgs/food.png" alt="Chicken Alfredo Pasta" />
+        </div>
+
+        <!-- Content Right -->
+        <div class="recipe-details-content">
+            <div class="recipe-details-header">
+                <h1>@Model.Title</h1>
+                <p>Category: <strong>@Model.Category?.Name</strong> | @Model.User?.UserName • @Model.CreatedDate </p>
+            </div>
+
+            <p>
+                @Model.Description
+            </p>
+
+            <div class="recipe-details-info-grid">
+                <div class="recipe-details-info-box">
+                    <h4>Prep Time</h4>
+                    <p>@Model.PrepTimeMinutes min</p>
+                </div>
+                <div class="recipe-details-info-box">
+                    <h4>Cook Time</h4>
+                    <p>@Model.CookTimeMinutes min</p>
+                </div>
+                <div class="recipe-details-info-box">
+                    <h4>Servings</h4>
+                    <p>@Model.Servings</p>
+                </div>
+                <div class="recipe-details-info-box">
+                    <h4>Difficulty</h4>
+                    <p class="difficulty medium"> @Model.Difficulty </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="ingred-inst">
+        <div class="recipe-details-section">
+            <h3>Ingredients</h3>
+            <ul>
+                <li>@Model.Ingredients</li>
+               
+            </ul>
+        </div>
+
+        <!-- Instructions -->
+        <div class="recipe-details-section">
+            <h3>Instructions</h3>
+            <p>
+                @Model.Instructions
+            </p>
+        </div>
+    </div>
+
+    <!-- Rating Form -->
+
+    @* <div class="recipe-details-section recipe-details-rating-form"> *@
+    @*     <h3>Leave a Rating</h3> *@
+    @*     <form id="ratingForm"> *@
+    @*         <label for="score">Your Rating:</label> *@
+    @*         <div class="star-rating"> *@
+    @*             <input type="radio" name="score" id="star5" value="5" /><label for="star5">★</label> *@
+    @*             <input type="radio" name="score" id="star4" value="4" /><label for="star4">★</label> *@
+    @*             <input type="radio" name="score" id="star3" value="3" /><label for="star3">★</label> *@
+    @*             <input type="radio" name="score" id="star2" value="2" /><label for="star2">★</label> *@
+    @*             <input type="radio" name="score" id="star1" value="1" /><label for="star1">★</label> *@
+    @*         </div> *@
+
+    @*         <label for="comment">Your Comment:</label> *@
+    @*         <textarea id="comment" *@
+    @*                   name="comment" *@
+    @*                   rows="4" *@
+    @*                   placeholder="Write your thoughts..."></textarea> *@
+
+    @*         <button type="submit">Submit Rating</button> *@
+    @*     </form> *@
+    @* </div> *@
+    @* <!-- Rating Section --> *@
+    @* <div class="recipe-details-section recipe-details-rating-form"> *@
+    @*     <h3>Leave a Rating</h3> *@
+    @*     <form asp-controller="Rating" asp-action="SubmitRating" method="post"> *@
+    @*         @Html.AntiForgeryToken() *@
+    @*         <input type="hidden" name="recipeId" value="@Model.Id" /> *@
+
+    @*         <label for="score">Your Rating:</label> *@
+    @*         <div class="star-rating"> *@
+    @*             <input type="radio" name="score" id="star5" value="5" /><label for="star5">★</label> *@
+    @*             <input type="radio" name="score" id="star4" value="4" /><label for="star4">★</label> *@
+    @*             <input type="radio" name="score" id="star3" value="3" /><label for="star3">★</label> *@
+    @*             <input type="radio" name="score" id="star2" value="2" /><label for="star2">★</label> *@
+    @*             <input type="radio" name="score" id="star1" value="1" /><label for="star1">★</label> *@
+    @*         </div> *@
+
+    @*         <label for="comment">Your Comment:</label> *@
+    @*         <textarea id="comment" name="comment" rows="4" placeholder="Write your thoughts..."></textarea> *@
+
+    @*         <button type="submit">Submit Rating</button> *@
+    @*     </form> *@
+    @* </div> *@
+
+
+
+
+    @* <div class="recipe-details-section recipe-details-rating"> *@
+    @*     <h3>Ratings & Comments</h3> *@
+
+    @*     <!-- Single Rating Example --> *@
+    @*     <div class="rating-item"> *@
+    @*         <div class="rating-header"> *@
+    @*             <span class="user-name">User456</span> *@
+    @*             <span class="rating-stars">★★★★☆</span> *@
+    @*             <span class="rating-date">• June 21, 2025</span> *@
+    @*         </div> *@
+    @*         <p class="rating-comment"> *@
+    @*             This was amazing! Creamy and flavorful — even better than restaurant *@
+    @*             Alfredo! *@
+
+                
+    @*         </p> *@
+    @*     </div> *@
+
+    @*     <div class="rating-item"> *@
+    @*         <div class="rating-header"> *@
+    @*             <span class="user-name">FoodieJane</span> *@
+    @*             <span class="rating-stars">★★★★★</span> *@
+    @*             <span class="rating-date">• June 22, 2025</span> *@
+    @*         </div> *@
+    @*         <p class="rating-comment"> *@
+    @*             Super easy to follow. My whole family loved it. Will definitely make *@
+    @*             again! *@
+    @*         </p> *@
+    @*     </div> *@
+
+        
+
+    @* </div> *@
+
+
+    <!-- ✅ Rating Form (keep only one) -->
+    <div class="recipe-details-section recipe-details-rating-form">
+        <h3>Leave a Rating</h3>
+        <form asp-controller="Rating" asp-action="SubmitRating" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="recipeId" value="@Model.Id" />
+
+            <label for="score">Your Rating:</label>
+            <div class="star-rating">
+                <input type="radio" name="score" id="star5" value="5" /><label for="star5">★</label>
+                <input type="radio" name="score" id="star4" value="4" /><label for="star4">★</label>
+                <input type="radio" name="score" id="star3" value="3" /><label for="star3">★</label>
+                <input type="radio" name="score" id="star2" value="2" /><label for="star2">★</label>
+                <input type="radio" name="score" id="star1" value="1" /><label for="star1">★</label>
+            </div>
+
+            <label for="comment">Your Comment:</label>
+            <textarea id="comment" name="comment" rows="4" placeholder="Write your thoughts..."></textarea>
+
+            <button type="submit">Submit Rating</button>
+        </form>
+    </div>
+
+    <!-- ✅ Ratings Section -->
+    <div class="recipe-details-section recipe-details-rating">
+        <h3>Ratings & Comments</h3>
+        @if (ratings != null && ratings.Any())
+        {
+            foreach (var rating in ratings)
+            {
+                <div class="rating-item">
+                    <div class="rating-header">
+                        <span class="user-name">@rating.User?.UserName</span>
+                        <span class="rating-stars">
+                            @{
+                                for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= rating.Score)
+                                    {
+                                        @:★
+                                    }
+                                    else
+                                    {
+                                        @:☆
+                                    }
+                                }
+                            }
+                        </span>
+                        
+                    </div>
+                    <p class="rating-comment">
+                        @rating.Comment
+                    </p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No ratings yet. Be the first to leave one!</p>
+        }
+    </div>
+</div>
